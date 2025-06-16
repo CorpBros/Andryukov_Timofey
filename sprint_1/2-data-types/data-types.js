@@ -8,6 +8,34 @@
 
 
 // Код задания 1
+let string = "string";
+console.log(typeof string); //string
+
+let number = 10;
+console.log(typeof number); //number
+
+let bool = true;
+console.log(typeof bool); //boolean
+
+let null_var = null;
+console.log(typeof null_var); //object
+
+let undefined_var;
+console.log(typeof undefined_var); //undefined
+
+const symbol = Symbol("symbol");
+console.log(typeof symbol); //symbol
+
+let big_int = BigInt(1231231231231221312);
+console.log(typeof big_int); //bigint
+
+let obj = {
+    key : "value"
+};
+console.log(typeof obj); //object
+
+let array = [1,2,3];
+console.log(typeof array); //object
 
 
 /**
@@ -18,6 +46,15 @@
 
 
 // Код задания 2
+let num = Number("123");
+console.log(num);
+
+let add1 = "123" + 5;
+console.log(add1);  //так как складываются строка и число, то произойдёт неявное преобразование числа 5 в строку "5"
+                    //затем складываются две строки и получается 1235
+
+let add2 = Number("123") + 5;
+console.log(add2); //выведет 128, так как здесь явное преобразование "123" в число, потому нормально складываются два числа
 
 
 /**
@@ -28,6 +65,15 @@
 
 
 // Код задания 3
+function get_type(value) {
+    let type = typeof value;
+    if(type == "string") return "Это строка";
+    else if (type == "number") return "Это число"
+    else if (type == "boolean") return "Это булевая переменная"
+    else if (type == "bigint") return "Это большое число"
+    //тд
+}
+console.log(get_type("str"))
 
 
 /**
@@ -44,3 +90,8 @@
  **/
 
 // Код задания 4
+// undefined - тип, означающий что переменной не было присвоено значение, а null обозначает намеренное отсутствие значения
+console.log(a == b);  //true
+console.log(a === b); //false
+console.log(typeof a); //undefined
+console.log(typeof b); //object
