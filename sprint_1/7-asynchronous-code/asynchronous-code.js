@@ -8,6 +8,9 @@
 
 // Код задания 1
 
+function delayLog(msg, ms) {
+    setTimeout(() => console.log(msg), ms);
+}
 
 /**
  * Задание 2.
@@ -16,6 +19,11 @@
 
 // Код задания 2
 
+function sequentialLogs() {
+    for (let i = 1; i <= 3; i ++) {
+        setTimeout(() => console.log(i), 1000 * i);
+    }
+}
 
 /**
  * Задание 3.
@@ -24,6 +32,19 @@
  **/
 
 // Код задания 3
+function checkNumber(num) {
+    const myPromise = new Promise((resolve, reject) => {
+        if (num > 10)
+            resolve("OK");
+        else
+            reject("Too small");
+    })
+    myPromise
+        .then(result => console.log(result))
+        .catch(error => console.error(error))
+    return myPromise;
+}
+
 
 /**
  * Задание 4.
@@ -33,6 +54,12 @@
 
 // Код задания 4
 
+function fakeFetch(url) {
+    const promise = new Promise(resolve => setTimeout(() => resolve(`${url} loaded`), 2000));
+    promise.then(result => console.log(result));
+    return promise;
+}
+fakeFetch("http://someurl.com");
 
 /**
  * Задание 5.
@@ -45,6 +72,13 @@
 
 // Код задания 5
 
+async function operations(someNumber) {
+    await new Promise(resolve => resolve(someNumber *= 2));
+    await new Promise(resolve => resolve(someNumber += 10));
+    await new Promise(resolve => resolve(someNumber /= 3));
+    console.log(someNumber);
+}
+operations(25);
 
 /**
  * Задание 6.
@@ -54,6 +88,15 @@
 
 // Код задания 6
 
+async function loadData() {
+    try {
+        const result = await fakeFetch();
+        console.log(result);
+    }
+    catch (error) {
+        console.error("Ошибка:", error);
+    }
+}
 
 /**
  * Задание 7.
@@ -63,6 +106,21 @@
 
 // Код задания 7
 
+const fetchData1 = () => new Promise(resolve => setTimeout(() => resolve("http://someurl1.com"), 1000));
+const fetchData2 = () => new Promise(resolve => setTimeout(() => resolve("http://someurl2.com"), 1500));
+const fetchData3 = () => new Promise(resolve => setTimeout(() => resolve("http://someurl3.com"), 2000));
+
+async function loadAll(urls) {
+    try {
+        const results = await Promise.all(urls);
+        console.log(results);
+    }
+    catch (error) {
+        console.error("Ошибка:", error);
+    }
+}
+
+loadAll([fetchData1(), fetchData2(), fetchData3()]);
 
 /**
  * Задание 8.
@@ -70,8 +128,21 @@
  * Она должна вернуть результат самого первого завершившегося запроса.
  **/
 
-// Код задания 7
+// Код задания 8
 
+const fetchData4 = () => new Promise(resolve => setTimeout(() => resolve("http://someurl1.com"), 1500));
+const fetchData5 = () => new Promise(resolve => setTimeout(() => resolve("http://someurl2.com"), 1000));
+
+async function loadFirst(urls) {
+    try {
+        return await Promise.race(urls)
+    }
+    catch {
+        console.error("Ошибка:", error);
+    }
+}
+
+console.log(loadFirst([fetchData4(), fetchData5()]));
 
 /**
  * Задание 9.
@@ -79,6 +150,14 @@
  **/
 
 // Код задания 9
+let array = [1, 2, 3];
+async function processSequentially(arr, asyncFn) {
+    arr = await Promise.all(arr.map((el) => asyncFn(el)));
+    console.log(arr);
+}
+
+processSequentially(array, async (value) => value += 1);
+
 
 
 /**
@@ -87,3 +166,9 @@
  **/
 
 // Код задания 10
+function sleep(ms) {
+    const promise = new Promise(resolve => setTimeout(() => resolve('done'), ms));
+    promise.then(result => console.log(result));
+    return promise;
+}
+sleep(1000);
