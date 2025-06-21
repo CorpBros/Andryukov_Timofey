@@ -45,7 +45,7 @@ console.log(
 function memoize(fn) {
     let cache = {};
     return function(...args) {
-        let args_to_str = args.join('');
+        let args_to_str = args.join('-');
         if (!cache[args_to_str]) {
             let value = fn(...args);
             cache[args_to_str] = value;
