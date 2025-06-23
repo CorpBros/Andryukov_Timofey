@@ -56,7 +56,8 @@ console.log(isEven(2));
 // Код задания 5
 
 function formatName(firstName, lastName) {
-   return `${lastName} ${firstName[0]}.`
+   if(!firstName || !lastName) return "Введите полное имя и фамилию";
+   return `${lastName} ${firstName[0]}.`;
 }
 console.log(formatName("Иван","Иванов"))
 
@@ -72,10 +73,16 @@ console.log(formatName("Иван","Иванов"))
 // Код задания 6
 
 function translateStatus(code) {
-   if (code === 'success') return 'Успешно';
-   if (code === 'error') return 'Ошибка';
-   if (code === 'pending') return 'В ожидании';
-   return 'Неизвестно';
+   switch(code) {
+      case 'success':
+         return 'Успешно';
+      case 'error':
+         return 'Ошибка';
+      case 'pending':
+         return 'В ожидании';
+      default:
+         return 'Неизвестно';
+   }
 }
 console.log(translateStatus("success"))
 console.log(translateStatus("asdasdasds"))

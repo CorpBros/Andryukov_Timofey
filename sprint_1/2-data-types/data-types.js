@@ -67,13 +67,22 @@ console.log(add2); //выведет 128, так как здесь явное п�
 // Код задания 3
 function get_type(value) {
     let type = typeof value;
-    if(type == "string") return "Это строка";
-    else if (type == "number") return "Это число";
-    else if (type == "boolean") return "Это булевая переменная";
-    else if (type == "bigint") return "Это большое число";
-    else if (type == "undefined") return "Это значение не определено";
-    else if (type == "symbol") return "Это символ";
-    else if (type == "object") return "Это объект";
+    switch(type) {
+        case "string":
+            return "Это строка";
+        case "number":
+            return "Это число";
+        case "boolean":
+            return "Это булевая переменная";
+        case "bigint":
+            return "Это большое число";
+        case "undefined":
+            return "Это значение не определено";
+        case "symbol":
+            return "Это символ";
+        case "object":
+            return "Это объект";
+    }
 }
 console.log(get_type("str"));
 

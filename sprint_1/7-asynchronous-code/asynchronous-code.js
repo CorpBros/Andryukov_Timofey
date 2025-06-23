@@ -34,10 +34,8 @@ function sequentialLogs() {
 // Код задания 3
 function checkNumber(num) {
     const myPromise = new Promise((resolve, reject) => {
-        if (num > 10)
-            resolve("OK");
-        else
-            reject("Too small");
+        if (num > 10) resolve("OK");
+        reject("Too small");
     })
     myPromise
         .then(result => console.log(result))

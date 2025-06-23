@@ -59,7 +59,7 @@ function stars(s) {
 function check_permission() {
     let time = new Date().getHours();
     if (time >= 22 || time < 7) return "Ночная блокировка: операции недоступны";
-    else return true;
+    return true;
 }
 
 /**
